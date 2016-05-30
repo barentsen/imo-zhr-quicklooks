@@ -1,0 +1,200 @@
+
+			// Create the gmap
+			var map = new GMap2(document.getElementById('map'));
+			map.setCenter(new GLatLng(25, 5), 2);
+			map.addControl(new GLargeMapControl());
+			map.addControl(new GMapTypeControl());
+			map.addControl(new GOverviewMapControl());
+			map.addControl(new GScaleControl());
+			map.enableDoubleClickZoom();
+			map.enableContinuousZoom();
+	
+			// Create an icon
+			function createIcon(color) {
+				var icon = new GIcon();
+				icon.image = 'http://labs.google.com/ridefinder/images/mm_20_'+color+'.png';
+				icon.shadow = 'http://labs.google.com/ridefinder/images/mm_20_shadow.png';
+				icon.iconSize = new GSize(12, 20);
+				icon.shadowSize = new GSize(22, 20);
+				icon.iconAnchor = new GPoint(6, 20);
+				icon.infoWindowAnchor = new GPoint(5, 1);	
+				return icon;
+			}
+			
+			// Create a marker
+			function createMarker(point, infoTabs, icon) {
+				var marker = new GMarker(point, icon);
+				// Show this markers index in the info window when it is clicked
+				var html = infoTabs;
+				//GEvent.addListener(marker, 'click', function() {marker.openInfoWindowHtml(html);});// for only html
+				GEvent.addListener(marker, 'click', function() {marker.openInfoWindowTabsHtml(html);});// for infoTabs
+				return marker;
+			};
+			
+			// Create an observer marker
+			function createObserverMarker(lon, lat, tab, color) {
+				var point = new GLatLng(lat, lon);
+				var infoTabs = [
+				  tab
+				];
+				var marker = createMarker(point, infoTabs, createIcon(color));
+				return marker;		
+			}
+	
+			var observers = [];
+			observers.push( createObserverMarker(-121.86833333333,42.576666666667 , new GInfoWindowTab('Observer', 'Observer: WESLEY STONE<br/>Site:  Chiloquin, OR'), 'red') );
+observers.push( createObserverMarker(-116.625,32.8383333333 , new GInfoWindowTab('Observer', 'Observer: ROBERT LUNSFORD<br/>Site: DESCANSO CA'), 'red') );
+observers.push( createObserverMarker(-114.72,52.125 , new GInfoWindowTab('Observer', 'Observer: BRUCE MCCURDY<br/>Site: Eccles Ranch'), 'red') );
+observers.push( createObserverMarker(-112.78,53.536666666667 , new GInfoWindowTab('Observer', 'Observer: BRUCE MCCURDY<br/>Site: Beaver Hills Dark Sky Preserve'), 'red') );
+observers.push( createObserverMarker(-110.82277777778,29.319444444444 , new GInfoWindowTab('Observer', 'Observer: Salvador Aguirre<br/>Site: Ejido El Carmen, Hermosillo, Sonora'), 'red') );
+observers.push( createObserverMarker(-110.76055555556,29.2175 , new GInfoWindowTab('Observer', 'Observer: Salvador Aguirre<br/>Site: Observatorio Ernesto Juarez D, Mpo. Hermosillo, Sonora.'), 'red') );
+observers.push( createObserverMarker(-109.52361111111,49.707777777778 , new GInfoWindowTab('Observer', 'Observer: BRUCE MCCURDY<br/>Site: cypress Hills Dark Sky Preserve'), 'red') );
+observers.push( createObserverMarker(-95.7125,35.947777777778 , new GInfoWindowTab('Observer', 'Observer: WILLIAM GODLEY<br/>Site: Coweta, Oklahoma'), 'red') );
+observers.push( createObserverMarker(-89.496666666667,41.641111111111 , new GInfoWindowTab('Observer', 'Observer: KEN HODONSKY<br/>Site: Harmon, Illinois'), 'red') );
+observers.push( createObserverMarker(-88.15,40.8666666667 , new GInfoWindowTab('Observer', 'Observer: KEN HODONSKY<br/>Site: CULLOM, IL'), 'red') );
+observers.push( createObserverMarker(-79.0597222,43.263888888889 , new GInfoWindowTab('Observer', 'Observer: WILLIAM WATSON<br/>Site: Fort Niagara, Youngstown, New York'), 'red') );
+observers.push( createObserverMarker(-78.384722222222,42.673055555556 , new GInfoWindowTab('Observer', 'Observer: WILLIAM WATSON<br/>Site: Beaver Meadows Observatory, North Java, New York'), 'red') );
+observers.push( createObserverMarker(-78.384722222222,42.673055555556 , new GInfoWindowTab('Observer', 'Observer: WILLIAM WATSON<br/>Site: Beaver Meadows Obs., N. Java, NY'), 'red') );
+observers.push( createObserverMarker(-78.384722222222,42.673055555556 , new GInfoWindowTab('Observer', 'Observer: WILLIAM WATSON<br/>Site: Beaver Meadows Obs., North Java, New York'), 'red') );
+observers.push( createObserverMarker(-76.966666666667,45.666666666667 , new GInfoWindowTab('Observer', 'Observer: PIERRE MARTIN<br/>Site: Stafford 2nd Line, ON'), 'red') );
+observers.push( createObserverMarker(-76.833333333333,45.833333333333 , new GInfoWindowTab('Observer', 'Observer: PIERRE MARTIN<br/>Site: Westmeath Lookout'), 'red') );
+observers.push( createObserverMarker(-76.483333333333,45.383333333333 , new GInfoWindowTab('Observer', 'Observer: PIERRE MARTIN<br/>Site: Bootland Farm'), 'red') );
+observers.push( createObserverMarker(-75.670555555556,45.1275 , new GInfoWindowTab('Observer', 'Observer: CATHY HALL<br/>Site: Kars, Ontario'), 'red') );
+observers.push( createObserverMarker(-75.05,45.25 , new GInfoWindowTab('Observer', 'Observer: PIERRE MARTIN<br/>Site: Moosecreek'), 'red') );
+observers.push( createObserverMarker(-75.05,45.25 , new GInfoWindowTab('Observer', 'Observer: PIERRE MARTIN<br/>Site: Moosecreek, ON'), 'red') );
+observers.push( createObserverMarker(-16.5083333333,28.2972222222 , new GInfoWindowTab('Observer', 'Observer: JURGEN RENDTEL<br/>Site: IZANA TENERIFE'), 'red') );
+observers.push( createObserverMarker(-2.14583333333,37.4138888889 , new GInfoWindowTab('Observer', 'Observer: JOSE LUIS MAESTRE GARCIA<br/>Site: ALBOX, ALMERIA'), 'red') );
+observers.push( createObserverMarker(3.3202777777778,50.987222222222 , new GInfoWindowTab('Observer', 'Observer: HENDRIK VANDENBRUAENE<br/>Site: Tielt'), 'red') );
+observers.push( createObserverMarker(3.3202777777778,50.987222222222 , new GInfoWindowTab('Observer', 'Observer: VEERLE HERRYGERS<br/>Site: Tielt'), 'red') );
+observers.push( createObserverMarker(3.3913888888889,51.356388888889 , new GInfoWindowTab('Observer', 'Observer: SIETSE DIJKSTRA<br/>Site: Retranchement, camp. de Couter'), 'red') );
+observers.push( createObserverMarker(3.6333333333333,50.716666666667 , new GInfoWindowTab('Observer', 'Observer: Michel Vandeputte<br/>Site: Ellezelles'), 'red') );
+observers.push( createObserverMarker(4.2333333333333,51.166666666667 , new GInfoWindowTab('Observer', 'Observer: Myriam Vingerhoets<br/>Site: Haasdonk'), 'red') );
+observers.push( createObserverMarker(4.4194444444444,51.020277777778 , new GInfoWindowTab('Observer', 'Observer: TOM CORSTJENS<br/>Site: Hombeek'), 'red') );
+observers.push( createObserverMarker(5.0905555555556,44.236111111111 , new GInfoWindowTab('Observer', 'Observer: KOEN MISKOTTE<br/>Site: Vaison La Romaine'), 'red') );
+observers.push( createObserverMarker(5.5758333333333,50.172777777778 , new GInfoWindowTab('Observer', 'Observer: PETER VAN LEUTEREN<br/>Site: La Roche-en-Ardenne'), 'red') );
+observers.push( createObserverMarker(5.6666666666667,43.866666666667 , new GInfoWindowTab('Observer', 'Observer: Michel Vandeputte<br/>Site: Reillane'), 'red') );
+observers.push( createObserverMarker(5.6666666666667,52.333333333333 , new GInfoWindowTab('Observer', 'Observer: KOEN MISKOTTE<br/>Site: Ermelo'), 'red') );
+observers.push( createObserverMarker(5.7666666666667,47.966666666667 , new GInfoWindowTab('Observer', 'Observer: Michel Vandeputte<br/>Site: Ishes'), 'red') );
+observers.push( createObserverMarker(6.5222222222222,45.748333333333 , new GInfoWindowTab('Observer', 'Observer: PETER VAN LEUTEREN<br/>Site: Les Saisies'), 'red') );
+observers.push( createObserverMarker(6.5280555555556,45.748055555556 , new GInfoWindowTab('Observer', 'Observer: PETER VAN LEUTEREN<br/>Site: Les Saisies'), 'red') );
+observers.push( createObserverMarker(6.6955555555556,52.301388888889 , new GInfoWindowTab('Observer', 'Observer: PETER VAN LEUTEREN<br/>Site: Azelo'), 'red') );
+observers.push( createObserverMarker(6.6966666666667,52.301111111111 , new GInfoWindowTab('Observer', 'Observer: CARL JOHANNINK<br/>Site: Azelo'), 'red') );
+observers.push( createObserverMarker(6.7477777777778,52.295277777778 , new GInfoWindowTab('Observer', 'Observer: PETER VAN LEUTEREN<br/>Site: Borne'), 'red') );
+observers.push( createObserverMarker(6.8677777777778,52.4225 , new GInfoWindowTab('Observer', 'Observer: Sietse Dijkstra<br/>Site: Nutter, bovenesweg'), 'red') );
+observers.push( createObserverMarker(6.9638888888889,52.416111111111 , new GInfoWindowTab('Observer', 'Observer: CARL JOHANNINK<br/>Site: Lattrop'), 'red') );
+observers.push( createObserverMarker(6.9661111111111,52.415 , new GInfoWindowTab('Observer', 'Observer: PETER VAN LEUTEREN<br/>Site: Cosmos Observatory Lattrop'), 'red') );
+observers.push( createObserverMarker(6.9661111111111,52.415 , new GInfoWindowTab('Observer', 'Observer: PETER VAN LEUTEREN<br/>Site: Lattrop'), 'red') );
+observers.push( createObserverMarker(6.9663888888889,52.415 , new GInfoWindowTab('Observer', 'Observer: SIETSE DIJKSTRA<br/>Site: Lattrop Cosmos sterrenwacht'), 'red') );
+observers.push( createObserverMarker(7.015,52.214444444444 , new GInfoWindowTab('Observer', 'Observer: CARL JOHANNINK<br/>Site: Gronau'), 'red') );
+observers.push( createObserverMarker(7.0647222222222,52.252222222222 , new GInfoWindowTab('Observer', 'Observer: PETER VAN LEUTEREN<br/>Site: Gronau'), 'red') );
+observers.push( createObserverMarker(7.0652777777778,52.251944444444 , new GInfoWindowTab('Observer', 'Observer: CARL JOHANNINK<br/>Site: Gronau'), 'red') );
+observers.push( createObserverMarker(7.0688888888889,52.253888888889 , new GInfoWindowTab('Observer', 'Observer: CARL JOHANNINK<br/>Site: Gronau'), 'red') );
+observers.push( createObserverMarker(7.3741666666667,52.116111111111 , new GInfoWindowTab('Observer', 'Observer: CARL JOHANNINK<br/>Site: Borghorst'), 'red') );
+observers.push( createObserverMarker(7.3741666666667,52.116111111111 , new GInfoWindowTab('Observer', 'Observer: PETER VAN LEUTEREN<br/>Site: Borghorst'), 'red') );
+observers.push( createObserverMarker(7.4847222222222,52.0425 , new GInfoWindowTab('Observer', 'Observer: CARL JOHANNINK<br/>Site: Altenberge'), 'red') );
+observers.push( createObserverMarker(7.4847222222222,52.0425 , new GInfoWindowTab('Observer', 'Observer: PETER VAN LEUTEREN<br/>Site: Altenberge'), 'red') );
+observers.push( createObserverMarker(9.4402777777778,48.865833333333 , new GInfoWindowTab('Observer', 'Observer: DANIEL GRUEN<br/>Site: Winnenden-Birkmannsweiler'), 'red') );
+observers.push( createObserverMarker(9.95,49.833333333333 , new GInfoWindowTab('Observer', 'Observer: PIERRE BADER<br/>Site: Winterhausen'), 'red') );
+observers.push( createObserverMarker(11.059444444444,46.555277777778 , new GInfoWindowTab('Observer', 'Observer: FRANK WACHTER<br/>Site: St. Pankranz'), 'red') );
+observers.push( createObserverMarker(11.059444444444,46.555277777778 , new GInfoWindowTab('Observer', 'Observer: SABINE WACHTER<br/>Site: St. Pankranz'), 'red') );
+observers.push( createObserverMarker(12.75,42.31 , new GInfoWindowTab('Observer', 'Observer: Roberto Haver<br/>Site: Tancia'), 'red') );
+observers.push( createObserverMarker(12.75,42.31 , new GInfoWindowTab('Observer', 'Observer: Roberto  Haver<br/>Site: Tancia'), 'red') );
+observers.push( createObserverMarker(12.81,42.23 , new GInfoWindowTab('Observer', 'Observer: Roberto Haver<br/>Site: Frasso Sabino'), 'red') );
+observers.push( createObserverMarker(12.9638888889,52.4594444444 , new GInfoWindowTab('Observer', 'Observer: JURGEN RENDTEL<br/>Site: MARQUARDT'), 'red') );
+observers.push( createObserverMarker(12.968888888889,56.695555555556 , new GInfoWindowTab('Observer', 'Observer: Tereza Novotna<br/>Site: SKEDALA'), 'red') );
+observers.push( createObserverMarker(13.066666666667,49.066666666667 , new GInfoWindowTab('Observer', 'Observer: PIERRE BADER<br/>Site: Bodenmais'), 'red') );
+observers.push( createObserverMarker(13.6,51.116666666667 , new GInfoWindowTab('Observer', 'Observer: FRANK WACHTER<br/>Site: St. Pankranz'), 'red') );
+observers.push( createObserverMarker(13.65,51.1 , new GInfoWindowTab('Observer', 'Observer: SABINE WACHTER<br/>Site: Radebeul'), 'red') );
+observers.push( createObserverMarker(13.73,45.2813888889 , new GInfoWindowTab('Observer', 'Observer: ALAN PEVEC<br/>Site: VISNJAN'), 'red') );
+observers.push( createObserverMarker(13.73,45.2813888889 , new GInfoWindowTab('Observer', 'Observer: Denis Vida<br/>Site: VISNJAN'), 'red') );
+observers.push( createObserverMarker(13.73,45.2813888889 , new GInfoWindowTab('Observer', 'Observer: Filip Novoselnik<br/>Site: VISNJAN'), 'red') );
+observers.push( createObserverMarker(13.73,45.2813888889 , new GInfoWindowTab('Observer', 'Observer: Ivica Pletikosa<br/>Site: VISNJAN'), 'red') );
+observers.push( createObserverMarker(13.932222222222,51.113333333333 , new GInfoWindowTab('Observer', 'Observer: SABINE WACHTER<br/>Site: Radeberg (Sternwarte)'), 'red') );
+observers.push( createObserverMarker(14.1883333333,49.9547222222 , new GInfoWindowTab('Observer', 'Observer: PAVOL HABUDA<br/>Site: MORINA'), 'red') );
+observers.push( createObserverMarker(14.229166666667,45.984444444444 , new GInfoWindowTab('Observer', 'Observer: JAVOR KAC<br/>Site: Zaplana'), 'red') );
+observers.push( createObserverMarker(14.229444444444,45.983888888889 , new GInfoWindowTab('Observer', 'Observer: JAVOR KAC<br/>Site: Zaplana'), 'red') );
+observers.push( createObserverMarker(14.781666666667,49.913055555556 , new GInfoWindowTab('Observer', 'Observer: KAMIL HORNOCH<br/>Site: Ondrejov'), 'red') );
+observers.push( createObserverMarker(14.99,45.819444444444 , new GInfoWindowTab('Observer', 'Observer: JAVOR KAC<br/>Site: Mali Lipovec'), 'red') );
+observers.push( createObserverMarker(14.99,45.819444444444 , new GInfoWindowTab('Observer', 'Observer: MITJA GOVEDIC<br/>Site: Mali Lipovec'), 'red') );
+observers.push( createObserverMarker(15.255,46.497222222222 , new GInfoWindowTab('Observer', 'Observer: JAVOR KAC<br/>Site: Ribni\v{s}ka ko\v{c}a'), 'red') );
+observers.push( createObserverMarker(15.255555555556,46.497222222222 , new GInfoWindowTab('Observer', 'Observer: JAVOR KAC<br/>Site: Ribni\v{s}ka ko\v{c}a'), 'red') );
+observers.push( createObserverMarker(15.255555555556,46.497777777778 , new GInfoWindowTab('Observer', 'Observer: JAVOR KAC<br/>Site: Ribni\v{s}ka ko\v{c}a'), 'red') );
+observers.push( createObserverMarker(15.255833333333,46.4975 , new GInfoWindowTab('Observer', 'Observer: MANCA BEHRIC<br/>Site: Ribniska koca'), 'red') );
+observers.push( createObserverMarker(15.256111111111,46.498611111111 , new GInfoWindowTab('Observer', 'Observer: MITJA GOVEDIC<br/>Site: Ribni?ka Ko?a'), 'red') );
+observers.push( createObserverMarker(15.256111111111,46.498611111111 , new GInfoWindowTab('Observer', 'Observer: MITJA GOVEDIC<br/>Site: Ribniska Koca'), 'red') );
+observers.push( createObserverMarker(15.264722222222,46.494166666667 , new GInfoWindowTab('Observer', 'Observer: JAVOR KAC<br/>Site: Jezerski vrh'), 'red') );
+observers.push( createObserverMarker(15.346111111111,49.481944444444 , new GInfoWindowTab('Observer', 'Observer: JAN VERFL<br/>Site: Zachotin'), 'red') );
+observers.push( createObserverMarker(15.346111111111,49.481944444444 , new GInfoWindowTab('Observer', 'Observer: JIRI SVOBODA<br/>Site: Zachotin'), 'red') );
+observers.push( createObserverMarker(15.353333333333,48.890555555556 , new GInfoWindowTab('Observer', 'Observer: THOMAS WEILAND<br/>Site: Göpfritzschlag'), 'red') );
+observers.push( createObserverMarker(15.427777777778,48.894166666667 , new GInfoWindowTab('Observer', 'Observer: THOMAS WEILAND<br/>Site: Thuma'), 'red') );
+observers.push( createObserverMarker(15.694166666667,46.978611111111 , new GInfoWindowTab('Observer', 'Observer: VILEM HEBLIK<br/>Site: JEZBORICE'), 'red') );
+observers.push( createObserverMarker(15.694166666667,49.978611111111 , new GInfoWindowTab('Observer', 'Observer: VILEM HEBLIK<br/>Site: JEZBO?ICE'), 'red') );
+observers.push( createObserverMarker(15.694166666667,49.978611111111 , new GInfoWindowTab('Observer', 'Observer: VILEM HEBLIK<br/>Site: JEZBORICE'), 'red') );
+observers.push( createObserverMarker(15.725833333333,50.035 , new GInfoWindowTab('Observer', 'Observer: VILEM HEBLIK<br/>Site: PARDUBICE'), 'red') );
+observers.push( createObserverMarker(16.2688888889,46.3969444444 , new GInfoWindowTab('Observer', 'Observer: MITJA GOVEDIC<br/>Site: SREDISCE OB DRAVI'), 'red') );
+observers.push( createObserverMarker(16.347222222222,50.971388888889 , new GInfoWindowTab('Observer', 'Observer: Marcin Chwala<br/>Site: Strzegom'), 'red') );
+observers.push( createObserverMarker(16.558333333333,48.503055555556 , new GInfoWindowTab('Observer', 'Observer: THOMAS WEILAND<br/>Site: Atzelsdorf'), 'red') );
+observers.push( createObserverMarker(16.751666666667,49.485 , new GInfoWindowTab('Observer', 'Observer: JAKUB KOUKAL<br/>Site: Suchy'), 'red') );
+observers.push( createObserverMarker(17.3961111111,49.3038888889 , new GInfoWindowTab('Observer', 'Observer: JAKUB KOUKAL<br/>Site: KROMERIZ'), 'red') );
+observers.push( createObserverMarker(17.396111111111,49.303888888889 , new GInfoWindowTab('Observer', 'Observer: JAKUB KOUKAL<br/>Site: Kromeriz'), 'red') );
+observers.push( createObserverMarker(17.5166666667,48.1 , new GInfoWindowTab('Observer', 'Observer: Tibor Csorgei<br/>Site: BELLOVA VES'), 'red') );
+observers.push( createObserverMarker(18.103055555556,48.841111111111 , new GInfoWindowTab('Observer', 'Observer: Lubos Danac<br/>Site: Trencin-Cernachovska luka'), 'red') );
+observers.push( createObserverMarker(18.103055555556,48.841111111111 , new GInfoWindowTab('Observer', 'Observer: MATEJ SUSTR<br/>Site: Trencin-Cernachovska luka'), 'red') );
+observers.push( createObserverMarker(18.103055555556,48.841111111111 , new GInfoWindowTab('Observer', 'Observer: MICHAL SUSTR<br/>Site: Trencin-Cernachovska luka'), 'red') );
+observers.push( createObserverMarker(18.103055555556,48.841111111111 , new GInfoWindowTab('Observer', 'Observer: Milos Malat<br/>Site: Trencin-Cernachovska luka'), 'red') );
+observers.push( createObserverMarker(18.103055555556,48.841111111111 , new GInfoWindowTab('Observer', 'Observer: Stanislav Sokol<br/>Site: Trencin-Cernachovska luka'), 'red') );
+observers.push( createObserverMarker(18.103055555556,48.841388888889 , new GInfoWindowTab('Observer', 'Observer: MARTIN LEHOTSKY<br/>Site: Trencin-Cernachovska luka'), 'red') );
+observers.push( createObserverMarker(18.561388888889,49.130833333333 , new GInfoWindowTab('Observer', 'Observer: JAKUB KOUKAL<br/>Site: Vrchtepla'), 'red') );
+observers.push( createObserverMarker(18.561388888889,49.130833333333 , new GInfoWindowTab('Observer', 'Observer: SYLVIE GORKOVA<br/>Site: Vrchtepla'), 'red') );
+observers.push( createObserverMarker(18.5613888889,49.1308333333 , new GInfoWindowTab('Observer', 'Observer: PAVOL HABUDA<br/>Site: VRCHTEPLA'), 'red') );
+observers.push( createObserverMarker(19.8833333333,49.9833333333 , new GInfoWindowTab('Observer', 'Observer: MACIEJ KWINTA<br/>Site: KRAKOW'), 'red') );
+observers.push( createObserverMarker(19.941944444444,50.021388888889 , new GInfoWindowTab('Observer', 'Observer: MACIEJ KWINTA<br/>Site: Cracow'), 'red') );
+observers.push( createObserverMarker(19.958333333333,50.038055555556 , new GInfoWindowTab('Observer', 'Observer: MACIEJ KWINTA<br/>Site: Krakus Mound'), 'red') );
+observers.push( createObserverMarker(19.961111111111,50.091666666667 , new GInfoWindowTab('Observer', 'Observer: ANDRZEJ SKOCZEWSKI<br/>Site: Kraków'), 'red') );
+observers.push( createObserverMarker(20.653611111111,49.505833333333 , new GInfoWindowTab('Observer', 'Observer: ANDRZEJ SKOCZEWSKI<br/>Site: Barcice-Zabronie'), 'red') );
+observers.push( createObserverMarker(20.75,53.0333333333 , new GInfoWindowTab('Observer', 'Observer: JAROSLAW DYGOS<br/>Site: CZERNICE BOROWE'), 'red') );
+observers.push( createObserverMarker(20.926388888889,50.088888888889 , new GInfoWindowTab('Observer', 'Observer: Krzysztof Pieszczoch<br/>Site: Leg Tarnowski'), 'red') );
+observers.push( createObserverMarker(21.226666666667,41.89 , new GInfoWindowTab('Observer', 'Observer: VASKO CACANOSKI<br/>Site: Rudine'), 'red') );
+observers.push( createObserverMarker(21.4583333333,49.6583333333 , new GInfoWindowTab('Observer', 'Observer: LUKASZ SANOCKI<br/>Site: WOLA DEBOWIECKA'), 'red') );
+observers.push( createObserverMarker(21.633333333333,49.716666666667 , new GInfoWindowTab('Observer', 'Observer: Maciej Macidym<br/>Site: Chlebna'), 'red') );
+observers.push( createObserverMarker(21.717222222222,49.595555555556 , new GInfoWindowTab('Observer', 'Observer: Magdalena Sieniawska<br/>Site: ROWNE'), 'red') );
+observers.push( createObserverMarker(21.731388888889,51.709722222222 , new GInfoWindowTab('Observer', 'Observer: Tomasz Lojek<br/>Site: Grabniak'), 'red') );
+observers.push( createObserverMarker(22.140277777778,51.000833333333 , new GInfoWindowTab('Observer', 'Observer: MARIUSZ WISNIEWSKI<br/>Site: Urzedow'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.161111111111 , new GInfoWindowTab('Observer', 'Observer: Jakub Mirocha<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.994444444444 , new GInfoWindowTab('Observer', 'Observer: Barbara Handzlik<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.994444444444 , new GInfoWindowTab('Observer', 'Observer: Batlomiej Matuszkiewicz<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.994444444444 , new GInfoWindowTab('Observer', 'Observer: Ewa Wala<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.994444444444 , new GInfoWindowTab('Observer', 'Observer: Jakub Mirocha<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.994444444444 , new GInfoWindowTab('Observer', 'Observer: Krzysztof Polakowski<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.994444444444 , new GInfoWindowTab('Observer', 'Observer: Magdalena Sieniawska<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.994444444444 , new GInfoWindowTab('Observer', 'Observer: Marcin Chwala<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.994444444444 , new GInfoWindowTab('Observer', 'Observer: Michal Jakubec<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.994444444444 , new GInfoWindowTab('Observer', 'Observer: PAULINA SOWICKA<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141111111111,50.994444444444 , new GInfoWindowTab('Observer', 'Observer: PRZEMYSLAW ZOLADEK<br/>Site: Urz?dów'), 'red') );
+observers.push( createObserverMarker(22.141944444444,50.993333333333 , new GInfoWindowTab('Observer', 'Observer: LUKASZ WOZNIAK<br/>Site: Urzedow'), 'red') );
+observers.push( createObserverMarker(22.145833333333,51.000833333333 , new GInfoWindowTab('Observer', 'Observer: MARIUSZ WISNIEWSKI<br/>Site: Urzedow'), 'red') );
+observers.push( createObserverMarker(25.165555555556,41.576666666667 , new GInfoWindowTab('Observer', 'Observer: Antonia  Penkova-Jordanova<br/>Site: Beli Brezi'), 'red') );
+observers.push( createObserverMarker(25.165833333333,41.576666666667 , new GInfoWindowTab('Observer', 'Observer: Antonia  Penkova-Jordanova<br/>Site: Beli Brezi'), 'red') );
+observers.push( createObserverMarker(25.1666666667,41.5 , new GInfoWindowTab('Observer', 'Observer: Daniela Urumova<br/>Site: BELITE BREZI'), 'red') );
+observers.push( createObserverMarker(25.1666666667,41.5 , new GInfoWindowTab('Observer', 'Observer: Todor Dimitrov<br/>Site: BELITE BREZI'), 'red') );
+observers.push( createObserverMarker(26.15,55.6 , new GInfoWindowTab('Observer', 'Observer: AUDRIUS DUBIETIS<br/>Site: Salakas'), 'red') );
+observers.push( createObserverMarker(26.15,55.6 , new GInfoWindowTab('Observer', 'Observer: DOVILE KRAULEIDIENE<br/>Site: Salakas'), 'red') );
+observers.push( createObserverMarker(26.15,55.6 , new GInfoWindowTab('Observer', 'Observer: JURGA ZIENIUTE<br/>Site: Salakas'), 'red') );
+observers.push( createObserverMarker(26.469722222222,60.898333333333 , new GInfoWindowTab('Observer', 'Observer: ILKKA YRJOLA<br/>Site: Anahva'), 'red') );
+observers.push( createObserverMarker(29.6,44.883333333333 , new GInfoWindowTab('Observer', 'Observer: ROBERT POMOHACI<br/>Site: Sfantu Gheorghe'), 'red') );
+observers.push( createObserverMarker(34.254166666667,44.568888888889 , new GInfoWindowTab('Observer', 'Observer: Amirali Kandymov<br/>Site: Vil&#039;ne'), 'red') );
+observers.push( createObserverMarker(34.254166666667,45.568888888889 , new GInfoWindowTab('Observer', 'Observer: Arseniy Diachko<br/>Site: Vil&#039;ne'), 'red') );
+observers.push( createObserverMarker(34.5166666667,39.8666666667 , new GInfoWindowTab('Observer', 'Observer: CHRISTOPH GERBER<br/>Site: BUYUKNEFES'), 'red') );
+observers.push( createObserverMarker(34.604444444444,49.599722222222 , new GInfoWindowTab('Observer', 'Observer: Roman Kostenko<br/>Site: Poltava'), 'red') );
+observers.push( createObserverMarker(35,31.815277777778 , new GInfoWindowTab('Observer', 'Observer: Vladimir Feldman<br/>Site: Neve Shalom'), 'red') );
+observers.push( createObserverMarker(35,31.82 , new GInfoWindowTab('Observer', 'Observer: ANNA S. LEVINA<br/>Site: Neve Shalom'), 'red') );
+observers.push( createObserverMarker(82.943888888889,54.94 , new GInfoWindowTab('Observer', 'Observer: MIKHAIL MASLOV<br/>Site: Novosibirsk'), 'red') );
+observers.push( createObserverMarker(113.81666666667,38.716666666667 , new GInfoWindowTab('Observer', 'Observer: Yu Zhang<br/>Site: Wuyuezhai,Lingshou,Shijiazhuang'), 'red') );
+observers.push( createObserverMarker(115.84166666667,40.234444444444 , new GInfoWindowTab('Observer', 'Observer: Wei Ge<br/>Site: Fangkou, Huailai, Heibei'), 'red') );
+observers.push( createObserverMarker(115.84166666667,40.234444444444 , new GInfoWindowTab('Observer', 'Observer: Yingkai Xia<br/>Site: Fangkou, Huailai, Heibei'), 'red') );
+observers.push( createObserverMarker(116.82666666667,40.549444444444 , new GInfoWindowTab('Observer', 'Observer: Simiao CHENG<br/>Site: Shitanglu'), 'red') );
+observers.push( createObserverMarker(121.16472222222,24.088055555556 , new GInfoWindowTab('Observer', 'Observer: Jer Nan Lou<br/>Site: Meifeng, Nantou County'), 'red') );
+observers.push( createObserverMarker(149.27444444444,-35.749166666667 , new GInfoWindowTab('Observer', 'Observer: Paul Craft<br/>Site: Michelago'), 'red') );
+var mgr = new GMarkerManager(map);
+			mgr.addMarkers(observers, 0);
+			mgr.refresh();
