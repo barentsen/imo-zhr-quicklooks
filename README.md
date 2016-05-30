@@ -8,12 +8,14 @@ Contents
 * `database`: files used to fetch visual observations in XML format from the IMO web server and ingest them into a local PostgreSQL database.
 * `graph`: files used to create the ZHR graph for a single meteor shower.
 * `output`: output files, i.e. graphs and html pages, created for various meteor showers between 2006 and 2016. They are archived here for future reference.
+* `visualform`: the scripts used to generate the electronic visual observing report form and convert the user input to an observation XML file.
 
 See also
 --------
 A more modern, Python-based web application to create meteoroid flux graphs
 based on video data is available at [meteorflux.io](meteorflux.io)
-and the source code resides at [https://github.com/barentsen/meteor-flux](https://github.com/barentsen/meteor-flux)
+and the source code resides at [https://github.com/barentsen/meteor-flux](https://github.com/barentsen/meteor-flux).
+It could conceivably be adapted to produce flux graphs using visual data.
 
 Authors
 -------
