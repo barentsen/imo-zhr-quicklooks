@@ -5,10 +5,10 @@ It also contains the code that was used to generate them.
 
 Contents
 --------
-* `database`: files used to fetch visual observations in XML format from the IMO web server and ingest them into a local PostgreSQL database.
-* `graph`: files used to create the ZHR graph for a single meteor shower.
+* `database`: contains the code used to ingest visual observations in XML format, obtained from the IMO web server, into a local PostgreSQL database.
+* `graph`: scripts used to create the ZHR report and graphs for a single meteor shower using the local PostgreSQL database.
 * `output`: output files, i.e. graphs and html pages, created for various meteor showers between 2006 and 2016. They are archived here for future reference.
-* `visualform`: the scripts used to generate the electronic visual observing report form and convert the user input to an observation XML file.
+* `visualform`: the electronic visual observing report form on the IMO website, and the code used to convert the user input into XML files used to create the ZHR graphs.
 
 See also
 --------
